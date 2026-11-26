@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🎨 Portofolio — Teddy Dimas Suprapto
+# Portofolio — Teddy Dimas Suprapto
 
 **Website CV & portofolio pribadi, dibangun dengan Laravel (MVC, Migration, Seeder).**
 
@@ -13,22 +13,22 @@
 
 ---
 
-## ✨ Tentang Project
+## Tentang Project
 
 Portofolio ini menampilkan profil, keahlian, pengalaman, pendidikan, prestasi, dan kumpulan karya.
 Project ini awalnya dibuat dengan PHP biasa, lalu diubah ke **Laravel dengan pola MVC**. Data keahlian,
 pengalaman, dan pesan kontak sekarang disimpan di **database** dan dibuat lewat **migration**.
 
-## 🚀 Fitur
+##  Fitur
 
-- 🏠 **Halaman utama** dengan section Keahlian, Pendidikan, Pengalaman, Prestasi, dan Karya
-- 🗄️ **Skill dan Pengalaman dari database** (MySQL) lewat Model dan Controller
-- 🖼️ **Halaman detail karya** dengan URL yang rapi (`/work/{slug}`)
-- ✉️ **Form kontak** yang menyimpan pesan ke database dan mengirim email
-- 🛡️ **Perlindungan form:** validasi input, jebakan bot (honeypot), dan pembatasan 5 kiriman per menit
-- 🌱 **Seeder** supaya data awal bisa dibuat ulang dengan satu perintah
+-  **Halaman utama** dengan section Keahlian, Pendidikan, Pengalaman, Prestasi, dan Karya
+- **Skill dan Pengalaman dari database** (MySQL) lewat Model dan Controller
+-  **Halaman detail karya** dengan URL yang rapi (`/work/{slug}`)
+-  **Form kontak** yang menyimpan pesan ke database dan mengirim email
+-  **Perlindungan form:** validasi input, jebakan bot (honeypot), dan pembatasan 5 kiriman per menit
+-  **Seeder** supaya data awal bisa dibuat ulang dengan satu perintah
 
-## 🧰 Teknologi
+##  Teknologi
 
 | Bagian | Teknologi |
 | --- | --- |
@@ -37,7 +37,7 @@ pengalaman, dan pesan kontak sekarang disimpan di **database** dan dibuat lewat 
 | Frontend | Blade, CSS, JavaScript, Vite |
 | Tools | Composer, npm, Git |
 
-## 🏗️ Struktur MVC
+##  Struktur MVC
 
 ```
 app/
@@ -61,7 +61,7 @@ resources/views/
 routes/web.php                    → daftar halaman
 ```
 
-## 🗃️ Tabel Database
+##  Tabel Database
 
 | Tabel | Kolom utama |
 | --- | --- |
@@ -69,7 +69,7 @@ routes/web.php                    → daftar halaman
 | `experiences` | `period`, `title`, `org`, `description`, `tags` (JSON), `sort_order` |
 | `pesan_kontak` | `nama`, `email`, `pesan`, `created_at` |
 
-## 🛠️ Cara Menjalankan
+##  Cara Menjalankan
 
 **Kebutuhan:** PHP 8.2+, Composer, Node.js, dan MySQL (misalnya lewat XAMPP).
 
@@ -108,9 +108,9 @@ php artisan serve
 npm run dev
 ```
 
-Buka **http://127.0.0.1:8000** di browser. 🎉
+Buka **http://127.0.0.1:8000** di browser. 
 
-## 🔄 Perintah Berguna
+##  Perintah Berguna
 
 | Perintah | Fungsi |
 | --- | --- |
@@ -119,12 +119,12 @@ Buka **http://127.0.0.1:8000** di browser. 🎉
 | `php artisan migrate:status` | Cek status migration |
 | `npm run build` | Build CSS dan JS untuk produksi |
 
-## 📬 Pengaturan Email (opsional)
+##  Pengaturan Email (opsional)
 
 Pesan dari form kontak **selalu tersimpan di tabel `pesan_kontak`**. Agar email juga terkirim, isi pengaturan
 `MAIL_*` di `.env` dengan SMTP milikmu. Kalau tidak diisi, pesan tetap bisa dibaca lewat phpMyAdmin.
 
-## 👤 Pembuat
+##  Pembuat
 
 **Teddy Dimas Suprapto**
 GitHub: [@Soepraptoe](https://github.com/Soepraptoe)
@@ -133,6 +133,6 @@ GitHub: [@Soepraptoe](https://github.com/Soepraptoe)
 
 <div align="center">
 
-*Ad meliora* ✨
+*Ad meliora.* 
 
 </div>
