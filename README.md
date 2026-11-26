@@ -1,59 +1,138 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+<div align="center">
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+# 🎨 Portofolio — Teddy Dimas Suprapto
 
-## About Laravel
+**Website CV & portofolio pribadi, dibangun dengan Laravel (MVC, Migration, Seeder).**
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+![Laravel](https://img.shields.io/badge/Laravel-12-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)
+![PHP](https://img.shields.io/badge/PHP-8.2-777BB4?style=for-the-badge&logo=php&logoColor=white)
+![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+</div>
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+---
 
-## Learning Laravel
+## ✨ Tentang Project
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+Portofolio ini menampilkan profil, keahlian, pengalaman, pendidikan, prestasi, dan kumpulan karya.
+Project ini awalnya dibuat dengan PHP biasa, lalu diubah ke **Laravel dengan pola MVC**. Data keahlian,
+pengalaman, dan pesan kontak sekarang disimpan di **database** dan dibuat lewat **migration**.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## 🚀 Fitur
 
-## Laravel Sponsors
+- 🏠 **Halaman utama** dengan section Keahlian, Pendidikan, Pengalaman, Prestasi, dan Karya
+- 🗄️ **Skill dan Pengalaman dari database** (MySQL) lewat Model dan Controller
+- 🖼️ **Halaman detail karya** dengan URL yang rapi (`/work/{slug}`)
+- ✉️ **Form kontak** yang menyimpan pesan ke database dan mengirim email
+- 🛡️ **Perlindungan form:** validasi input, jebakan bot (honeypot), dan pembatasan 5 kiriman per menit
+- 🌱 **Seeder** supaya data awal bisa dibuat ulang dengan satu perintah
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## 🧰 Teknologi
 
-### Premium Partners
+| Bagian | Teknologi |
+| --- | --- |
+| Backend | Laravel 12, PHP 8.2 |
+| Database | MySQL (phpMyAdmin / XAMPP) |
+| Frontend | Blade, CSS, JavaScript, Vite |
+| Tools | Composer, npm, Git |
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+## 🏗️ Struktur MVC
 
-## Contributing
+```
+app/
+├── Http/Controllers/
+│   ├── Controller.php
+│   └── PortfolioController.php   → mengambil data skill & pengalaman
+└── Models/
+    ├── Skill.php
+    ├── Experience.php
+    └── PesanKontak.php
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+database/
+├── migrations/                   → struktur tabel
+└── seeders/                      → data awal (skills, experiences)
 
-## Code of Conduct
+resources/views/
+├── layouts/app.blade.php
+├── home.blade.php
+└── work.blade.php
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+routes/web.php                    → daftar halaman
+```
 
-## Security Vulnerabilities
+## 🗃️ Tabel Database
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+| Tabel | Kolom utama |
+| --- | --- |
+| `skills` | `name`, `category`, `sort_order` |
+| `experiences` | `period`, `title`, `org`, `description`, `tags` (JSON), `sort_order` |
+| `pesan_kontak` | `nama`, `email`, `pesan`, `created_at` |
 
-## License
+## 🛠️ Cara Menjalankan
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+**Kebutuhan:** PHP 8.2+, Composer, Node.js, dan MySQL (misalnya lewat XAMPP).
+
+```bash
+# 1. Clone repository
+git clone https://github.com/Soepraptoe/Portofolio.git
+cd Portofolio
+
+# 2. Install dependensi
+composer install
+npm install
+
+# 3. Siapkan file environment
+copy .env.example .env      # Windows
+# cp .env.example .env      # Mac/Linux
+```
+
+Buat database kosong bernama `portfolio_db` di phpMyAdmin, lalu cek pengaturan di `.env`:
+
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=portfolio_db
+DB_USERNAME=root
+DB_PASSWORD=
+```
+
+```bash
+# 4. Generate key, buat tabel, dan isi data awal
+php artisan key:generate
+php artisan migrate --seed
+
+# 5. Jalankan project (dua terminal)
+php artisan serve
+npm run dev
+```
+
+Buka **http://127.0.0.1:8000** di browser. 🎉
+
+## 🔄 Perintah Berguna
+
+| Perintah | Fungsi |
+| --- | --- |
+| `php artisan migrate:fresh --seed` | Hapus semua tabel, buat ulang, lalu isi data awal |
+| `php artisan db:seed --class=ExperienceSeeder` | Isi ulang data pengalaman saja |
+| `php artisan migrate:status` | Cek status migration |
+| `npm run build` | Build CSS dan JS untuk produksi |
+
+## 📬 Pengaturan Email (opsional)
+
+Pesan dari form kontak **selalu tersimpan di tabel `pesan_kontak`**. Agar email juga terkirim, isi pengaturan
+`MAIL_*` di `.env` dengan SMTP milikmu. Kalau tidak diisi, pesan tetap bisa dibaca lewat phpMyAdmin.
+
+## 👤 Pembuat
+
+**Teddy Dimas Suprapto**
+GitHub: [@Soepraptoe](https://github.com/Soepraptoe)
+
+---
+
+<div align="center">
+
+*Ad meliora* ✨
+
+</div>
