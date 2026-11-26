@@ -1,0 +1,240 @@
+:root {
+  --blue: #2437ff;
+  --pink: #ff4fa3;
+  --paper: #f2f2ee;
+  --ink: #0a0a3c;
+  --display: 'Bricolage Grotesque', sans-serif;
+  --body: 'Instrument Sans', sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; }
+html { background: var(--blue); }
+body { font-family: var(--body); color: var(--paper); background: var(--blue); overflow-x: hidden; }
+a { color: inherit; text-decoration: none; }
+h1, h2, h3 { font-family: var(--display); font-weight: 800; line-height: .9; letter-spacing: -.03em; }
+:focus-visible { outline: 3px solid var(--pink); outline-offset: 3px; }
+
+/* Cursor */
+.cursor { position: fixed; top: 0; left: 0; z-index: 90; pointer-events: none; display: none; }
+.cursor span { display: grid; place-items: center; width: 14px; height: 14px; margin: -7px 0 0 -7px; border-radius: 50%;
+  background: var(--pink); font: 600 .8rem var(--body); color: var(--ink); transition: width .25s, height .25s, margin .25s; }
+.cursor.big span { width: 84px; height: 84px; margin: -42px 0 0 -42px; }
+@media (hover: hover) and (pointer: fine) { .cursor { display: block; } body, a { cursor: none; } }
+
+/* Tirai transisi halaman & preloader */
+.curtain { position: fixed; inset: 0; z-index: 80; background: var(--pink); pointer-events: none; visibility: hidden; }
+.arriving .curtain { visibility: visible; }
+.preloader { position: fixed; inset: 0; z-index: 85; background: var(--ink); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2.5rem; }
+.preloader-icon { display: block; width: clamp(18rem, 55vw, 44rem); height: auto; }
+.bar { position: relative; width: clamp(45rem, 100vw, 60rem); height: .9rem; border-radius: 999px; background: rgba(255, 255, 255, .15); overflow: hidden; transform: translateY(3rem); }
+.bar-fill { display: block; width: 0; height: 100%; background: var(--paper); border-radius: inherit; }
+
+/* Nav */
+.nav { position: fixed; inset: 0 0 auto; z-index: 70; display: flex; justify-content: space-between; padding: 1.25rem 2rem; mix-blend-mode: difference; color: #fff; font-weight: 600; }
+.nav nav { display: flex; gap: 1.5rem; }
+
+/* Hero */
+.hero { position: relative; min-height: 100svh; padding: 7rem 2rem 2rem; display: flex; flex-direction: column; justify-content: flex-end; overflow: hidden; }
+.hero-title { font-size: clamp(4rem, 18vw, 18rem); overflow: hidden; padding-bottom: .08em; }
+.ch { display: inline-block; }
+.hero-role { font-size: clamp(1.1rem, 2vw, 1.6rem); margin-top: 1.5rem; max-width: 30ch; }
+.hero-hint { position: absolute; top: 5.5rem; left: 2rem; opacity: .7; }
+.sticker { position: absolute; padding: .8em 1.3em; border-radius: 999px; background: var(--c); color: var(--ink); font: 800 clamp(1rem, 2vw, 1.6rem) var(--display); cursor: grab; user-select: none; touch-action: none; box-shadow: 0 6px 0 var(--ink); }
+.sticker:active { cursor: grabbing; }
+.s1 { top: 22%; left: 12%; transform: rotate(-8deg); }
+.s2 { top: 15%; right: 14%; transform: rotate(6deg); }
+.s3 { top: 45%; right: 8%; transform: rotate(-4deg); }
+.s4 { top: 38%; left: 38%; transform: rotate(10deg); }
+
+/* Marquee */
+.marquee { background: var(--pink); color: var(--ink); overflow: hidden; white-space: nowrap; padding: 1rem 0; }
+.marquee-track { display: inline-flex; align-items: center; gap: 2rem; animation: marquee 25s linear infinite; font: 800 clamp(2rem, 5vw, 4rem) var(--display); }
+.marquee-track i { width: .6em; height: .6em; background: var(--ink); border-radius: 50%; }
+@keyframes marquee { to { transform: translateX(-50%); } }
+
+/* Karya: horizontal scroll di desktop, swipe di mobile */
+.works { background: var(--paper); color: var(--ink); overflow: hidden; }
+.works-track { display: flex; gap: 2rem; padding: 5rem 2rem; overflow-x: auto; }
+.works-intro { flex: 0 0 auto; display: flex; align-items: end; padding-right: 3rem; }
+.works-intro h2 { font-size: clamp(3rem, 8vw, 8rem); max-width: 6ch; }
+.card { flex: 0 0 min(80vw, 34rem); display: block; }
+.card-media { aspect-ratio: 4/5; background: var(--c); border: 3px solid var(--ink); border-radius: 1.5rem; transition: transform .4s cubic-bezier(.2,.8,.2,1), border-radius .4s; }
+.card:hover .card-media { transform: rotate(-2deg) scale(.97); border-radius: 6rem 1.5rem 6rem 1.5rem; }
+.card-info { display: flex; justify-content: space-between; align-items: baseline; margin-top: 1rem; }
+.card-info h3 { font-size: 2rem; }
+@media (min-width: 800px) { .works-track { overflow: visible; width: max-content; min-height: 100svh; align-items: center; } }
+
+/* About & kontak */
+.about { padding: 10rem 2rem; background: var(--ink); }
+.about-text { font: 400 clamp(1.8rem, 5vw, 4.5rem)/1.1 var(--display); max-width: 22ch; letter-spacing: -.02em; }
+.contact { padding: 8rem 2rem 3rem; background: var(--pink); color: var(--ink); }
+.contact h2 { font-size: clamp(3rem, 10vw, 10rem); }
+.contact-mail { display: inline-block; margin-top: 2.5rem; font: 800 clamp(1.5rem, 4vw, 3.5rem) var(--display); border-bottom: 4px solid currentColor; }
+.socials { list-style: none; padding: 0; display: flex; gap: 1.5rem; margin-top: 4rem; font-weight: 600; }
+
+/* Detail proyek */
+.work { padding: 8rem 2rem 0; background: var(--c); color: var(--ink); min-height: 100svh; }
+.work-title { font-size: clamp(3.5rem, 14vw, 14rem); overflow: hidden; padding-bottom: .08em; }
+.work-meta { margin-top: 1rem; font-weight: 600; }
+.work-desc { max-width: 55ch; font-size: 1.25rem; line-height: 1.5; margin: 2rem 0 4rem; }
+.work-block { aspect-ratio: 16/9; background: var(--ink); border-radius: 1rem; margin-bottom: 1rem; }
+.work-block.half { display: inline-block; width: calc(50% - .5rem); aspect-ratio: 1; }
+.work-next { display: block; margin: 6rem -2rem 0; padding: 4rem 2rem; background: var(--n); }
+.work-next span { display: block; margin-bottom: 1rem; font-weight: 600; }
+.work-next strong { font: 800 clamp(2.5rem, 9vw, 9rem)/.9 var(--display); letter-spacing: -.03em; }
+
+@media (prefers-reduced-motion: reduce) { .marquee-track { animation: none; } * { transition: none !important; } }
+
+/* ===== Tempel di PALING BAWAH resources/css/app.css ===== */
+
+/* Tombol, chip, tag */
+.btn { display: inline-block; padding: .8em 1.6em; border: 3px solid var(--paper); border-radius: 999px; font: 800 1.1rem var(--display); transition: background .25s, color .25s; }
+.btn:hover { background: var(--paper); color: var(--ink); }
+.btn.solid { background: var(--pink); border-color: var(--pink); color: var(--ink); }
+.btn.solid:hover { background: var(--paper); border-color: var(--paper); }
+.chips { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 1.5rem; }
+.chips li { padding: .45em 1em; border: 2px solid currentColor; border-radius: 999px; font-weight: 600; }
+.tags { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1rem; }
+.tags li { padding: .3em .8em; background: var(--ink); color: var(--paper); border-radius: 999px; font-size: .85rem; font-weight: 600; }
+
+/* Hero tambahan */
+.hero-bottom { display: grid; gap: 2rem; margin-top: 1.5rem; align-items: end; position: relative; z-index: 2; }
+.hero-bio { font-size: clamp(1.1rem, 2vw, 1.5rem); line-height: 1.4; max-width: 38ch; }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 1rem; }
+@media (min-width: 900px) { .hero-bottom { grid-template-columns: 1.2fr 1fr; } }
+
+/* Section umum */
+.sec { padding: 8rem 2rem; }
+.sec.dark { background: var(--ink); }
+.sec.light { background: var(--paper); color: var(--ink); }
+.sec.blue { background: var(--blue); }
+.sec-head { margin-bottom: 4rem; }
+.sec-head h2 { font-size: clamp(3rem, 9vw, 9rem); }
+
+/* Tentang */
+.about-grid { display: grid; gap: 4rem; }
+.about-block { margin-bottom: 3rem; }
+.about-block h3 { font-size: 1.8rem; margin-bottom: 1rem; }
+.about-block p { font-size: 1.25rem; line-height: 1.5; max-width: 45ch; }
+.details > div { display: flex; justify-content: space-between; gap: 2rem; padding: 1rem 0; border-bottom: 2px solid rgba(255, 255, 255, .25); }
+.details dt { opacity: .7; }
+.details dd { font-weight: 600; text-align: right; }
+@media (min-width: 900px) { .about-grid { grid-template-columns: 1.3fr 1fr; align-items: start; } }
+
+/* Pengalaman */
+.job { display: grid; gap: 1rem; padding: 2rem 0; border-top: 3px solid var(--ink); }
+.job-period { font-weight: 600; }
+.job h3 { font-size: clamp(1.8rem, 3vw, 2.6rem); }
+.job-org { margin-top: .4rem; opacity: .7; }
+.job p:not(.job-org) { line-height: 1.5; max-width: 50ch; }
+@media (min-width: 900px) { .job { grid-template-columns: 1fr 1.2fr 1.5fr; gap: 2rem; } }
+
+/* Alat */
+.toolkit { display: grid; gap: 3rem 2rem; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); }
+.tool-group h3 { font-size: 2rem; margin-bottom: .6rem; }
+.tool-group p { opacity: .8; }
+
+/* Kartu karya tambahan */
+.card { position: relative; }
+.card-media { position: relative; }
+.card-num { position: absolute; top: 1rem; left: 1.2rem; font: 800 2rem var(--display); color: var(--ink); }
+.card-desc { margin-top: .8rem; line-height: 1.5; max-width: 40ch; }
+
+/* Kontak */
+.touch { padding: 8rem 2rem 2rem; background: var(--pink); color: var(--ink); }
+.touch h2 { font-size: clamp(3rem, 10vw, 10rem); }
+.touch-mail { display: inline-block; margin-top: 2.5rem; font: 800 clamp(1.5rem, 4vw, 3.5rem) var(--display); border-bottom: 4px solid currentColor; word-break: break-all; }
+.touch-links { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 1rem 2rem; margin-top: 3rem; font: 800 1.4rem var(--display); }
+.touch-links a:hover { text-decoration: underline; text-decoration-thickness: 3px; }
+.foot { margin-top: 6rem; font-size: .9rem; opacity: .75; }
+
+/* ===== Tempel di PALING BAWAH resources/css/app.css ===== */
+
+/* Navbar melayang + border (menimpa .nav lama) */
+.nav { inset: 1rem auto auto 50%; transform: translateX(-50%); width: min(94vw, 72rem); align-items: center; padding: .7rem 1.2rem; background: var(--paper); color: var(--ink); border: 3px solid var(--ink); border-radius: 999px; box-shadow: 0 5px 0 var(--ink); mix-blend-mode: normal; }
+.nav-logo { font: 800 1.25rem var(--display); letter-spacing: -.02em; }
+.nav nav { gap: .25rem; }
+.nav nav a { padding: .4em .9em; border-radius: 999px; transition: background .2s; white-space: nowrap; }
+.nav nav a:hover, .nav nav a.on { background: var(--pink); }
+@media (max-width: 700px) {
+  .nav { justify-content: center; padding: .5rem .6rem; }
+  .nav-logo { display: none; }
+  .nav nav { overflow-x: auto; font-size: .85rem; }
+}
+
+/* Foto di Tentang */
+.about-grid { align-items: start; }
+.photo { margin: 0 auto; width: min(100%, 26rem); transform: rotate(-3deg); }
+.photo-frame { aspect-ratio: 4/5; display: grid; place-items: center; overflow: hidden; border: 3px solid var(--paper); border-radius: 1.5rem; background: rgba(255, 255, 255, .08); box-shadow: 10px 10px 0 var(--pink); }
+.photo-frame img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.photo-empty { padding: 1.5rem; text-align: center; line-height: 1.5; opacity: .7; }
+.details { margin-top: 1rem; }
+@media (min-width: 900px) { .about-grid { grid-template-columns: .8fr 1.2fr; gap: 5rem; } .photo { margin: 0; } }
+  .photo { transform: translateX(7rem) rotate(-3deg); 
+}
+/* Kontak + form */
+.touch-grid { display: grid; gap: 4rem; }
+@media (min-width: 900px) { .touch-grid { grid-template-columns: 1fr 1fr; align-items: start; } }
+.mail-card { padding: 2rem; background: var(--paper); color: var(--ink); border: 3px solid var(--ink); border-radius: 1.5rem; box-shadow: 8px 8px 0 var(--ink); }
+.mail-card h3 { font-size: clamp(1.8rem, 3vw, 2.4rem); margin-bottom: 1.5rem; }
+.mail-card label { display: block; margin-top: 1.2rem; font-weight: 600; }
+.mail-card input, .mail-card textarea { display: block; width: 100%; margin-top: .4rem; padding: .9rem 1rem; font: 400 1rem var(--body); color: var(--ink); background: #fff; border: 2px solid var(--ink); border-radius: .8rem; resize: vertical; }
+.mail-card input:focus-visible, .mail-card textarea:focus-visible { outline: 3px solid var(--pink); outline-offset: 2px; }
+.mail-card button { width: 100%; margin-top: 1.5rem; padding: 1rem; font: 800 1.1rem var(--display); color: var(--paper); background: var(--ink); border: 0; border-radius: .8rem; transition: background .2s; }
+.mail-card button:hover { background: var(--blue); }
+.mail-ok, .mail-err { margin-top: .6rem; font-weight: 600; }
+.mail-ok { padding: .8rem 1rem; background: #7df9c2; border: 2px solid var(--ink); border-radius: .8rem; }
+.mail-err { color: #c4001f; }
+.hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+@media (hover: hover) and (pointer: fine) {
+  .mail-card, .mail-card * { cursor: auto !important; }
+  .mail-card button { cursor: pointer !important; }
+  body:has(.mail-card:hover) .cursor { opacity: 0; }
+}
+.about-cv { margin-top: 2.5rem; }
+.hero-bottom .chips { margin-top: 0; }
+
+/* Tempel di PALING BAWAH resources/css/app.css */
+
+.sec.tight { padding-block: 6rem; }
+.sec.sun { background: #FFE600; color: var(--ink); }
+.sec.ember { background: #FF7A2F; color: var(--ink); }
+
+/* Judul di kiri, daftar di kanan (di desktop) */
+.split { display: grid; gap: 2.5rem; }
+.split-head h2 { font-size: clamp(3rem, 7vw, 7rem); }
+.split-list .job:first-child { border-top: 0; padding-top: 0; }
+.split-list .job:last-child { border-bottom: 3px solid var(--ink); }
+@media (min-width: 900px) {
+  .split { grid-template-columns: minmax(0, .7fr) minmax(0, 1.3fr); gap: 4rem; }
+  .split-head { position: sticky; top: 7rem; align-self: start; }
+  .split-list .job { grid-template-columns: 8rem 1fr; }
+  .split-list .job > div:last-child { grid-column: 2; }
+}
+
+/* Tempel di PALING BAWAH resources/css/app.css */
+
+/* Kartu karya di halaman utama */
+.card-media { overflow: hidden; }
+.card-media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+.card-num { z-index: 1; padding: .1em .55em; background: var(--paper); border-radius: 999px; font-size: 1.3rem; }
+
+/* Halaman detail karya */
+.work-desc { margin: 2rem 0 0; }
+.work .tags { margin: 1.5rem 0 3rem; }
+.work-actions { margin: -1rem 0 3rem; }
+.work .btn { border-color: var(--ink); }
+.work .btn:hover { background: var(--ink); color: var(--paper); }
+.work-media { display: block; width: 100%; height: auto; margin-bottom: 1rem; border-radius: 1rem; background: var(--ink); }
+.work-media.embed { aspect-ratio: 16 / 9; overflow: hidden; }
+.work-media.embed iframe { display: block; width: 100%; height: 100%; border: 0; }
+.work-caption { margin: -.4rem 0 1.5rem; opacity: .75; }
+
+/* Tempel di PALING BAWAH resources/css/app.css */
+
+.touch { min-height: 100svh; display: flex; flex-direction: column; }
+.touch-center { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3rem; text-align: center; }
+.touch-center h2 { font-size: clamp(3rem, 10vw, 9rem); }
+.touch-center .mail-card { width: min(100%, 44rem); text-align: left; }
+.touch-center .mail-card > label:first-of-type { margin-top: 0; }
+.touch-center .touch-links { justify-content: center; margin-top: 0; }
+.touch .foot { margin-top: 4rem; text-align: center; }
